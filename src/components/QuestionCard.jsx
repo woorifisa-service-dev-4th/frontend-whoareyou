@@ -1,14 +1,19 @@
-import * as React from "react";
 import { useQnAContext } from "../contexts/QnAContexts";
+import {useNavigate} from 'react-router-dom';
 
 const QuestionCard=({ likeImageSrc }) => {
   const state = useQnAContext();
+  const navigate = useNavigate();
   console.log(state.postData[0].body);
   const postData = state.postData[0].body;
   const { title, content, like, createdAt} = postData;
 
+  const handleClick = () => {
+    navigate(`post-detail/0`);
+  }
+
   return (
-    <article className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full">
+    <article onClick={handleClick} className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full">
       <div className="flex flex-wrap self-start font-bold text-sky-700 min-h-[90px] max-md:max-w-full">
         <div className="text-5xl leading-[70px] w-[65px] max-md:text-4xl max-md:leading-[62px]">
           Q
