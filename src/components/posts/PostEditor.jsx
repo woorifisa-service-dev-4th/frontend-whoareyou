@@ -2,28 +2,47 @@ import React, { useState } from "react";
 import ToastEditor from "../ToastEditor";
 import CustomButton from "../button/CustomButton";
 import CategoryFilter from "./CategoryFilter";
-import CourseFilter from "./CourseFilter";
+import { useQnAContext, useQnADispatch } from "../../contexts/QnAContexts";
+import ClassFilter from "./ClassFilter";
 
-const PostEditor = ({ onClose }) => {
+const PostEditor = ({ onClose, children }) => {
+    const isNewPost = () => children.endsWith('등록') ? true : false;
 
-    const [category, setCategory] = useState('PROJECT');
-    const [course, setCourse] = useState('ENGINEERING');
+    const datas = useQnAContext();
+    const posts = datas.postData;
+    const dispatch = useQnADispatch();
+
+    const [categoryNum, setCategory] = useState(0);
+    const [classNum, setClass] = useState(0);
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    const addOrUpdateHandler = () => {
+        // {postData: postDummyData, commentData: commentDummyData, imageDummyData: imageDummyData}
+        if(isNewPost()){
+            // add면 qnaContext의 dispatch에 type: CREATE_POST, newPost: 해서 postDummy에 추가
+            
+            dispatch({type: 'CREATE_POST', newPost: {id: posts.length, body: {title, content, like: 0, createdAt: new Date(), classNum, category: categoryNum }, status: 0}});
+        }
+        else {
+            // update면 qnaContext의 dispatch에 type: UPDATE_POST, updatedPost: 해서 postDummy에서 수정 
+        }
+        
+    }
 
 
     return (
         <div className=" w-full h-full flex flex-col items-center px-20 py-4 bg-white rounded-3xl max-md:px-5 overflow-y-scroll">
             <h1 className="text-3xl font-bold leading-snug text-center text-cyan-400">
-                게시물 수정
+                {children}
             </h1>
 
             <div className="flex flex-col mt-4 max-w-full w-[900px] max-md:mt-10">
                 <div className="flex flex-col w-full leading-snug max-w-[900px] text-zinc-800 max-md:max-w-full">
                     <div className="flex gap-5 items-start mt-2.5 w-full text-base max-md:max-w-full">
                         <CategoryFilter onChange={setCategory} />
-                        <CourseFilter onChange={setCourse} />
+                        <ClassFilter onChange={setClass} />
                     </div>
                 </div>
 
@@ -58,7 +77,7 @@ const PostEditor = ({ onClose }) => {
                     등록하기
                 </button> */}
                 <CustomButton bgColor={'bg-neutral'} onClick={onClose}>취소하기</CustomButton>
-                <CustomButton bgColor={'bg-cyan'} onClick={() => console.log(category, course, title, content)}>등록하기</CustomButton>
+                <CustomButton bgColor={'bg-cyan'} onClick={addOrUpdateHandler}>등록하기</CustomButton>
             </div>
         </div>
     );
