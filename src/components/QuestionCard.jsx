@@ -1,11 +1,11 @@
 import { useQnAContext } from "../contexts/QnAContexts";
 import {useNavigate} from 'react-router-dom';
 
-const QuestionCard = ({ likeImageSrc }) => {
+const QuestionCard = ({ likeImageSrc, question={question} }) => {
 
   const state = useQnAContext();
   const navigate = useNavigate();
-  const postData = state.postData.find((q) => q.id === parseInt(id));
+  const postData = state.postData.find((q) => q.id === parseInt(question.id)).body;
   const { title, content, like, createdAt } = postData;
   
   const handleClick = () => {
@@ -26,7 +26,7 @@ const QuestionCard = ({ likeImageSrc }) => {
         {content}
       </p>
       <div className="flex flex-wrap gap-10 justify-between mt-8 w-full text-xl min-h-[50px] text-zinc-400 max-md:max-w-full">
-        <time className="leading-7 text-center w-[129px]">{createdAt[0]}</time>
+        <time className="leading-7 text-center w-[129px]">{createdAt.toLocaleString().slice(0, -10)}</time>
         <div className="flex gap-2 items-center px-5 py-2.5 h-full leading-snug whitespace-nowrap">
           <img
             loading="lazy"
