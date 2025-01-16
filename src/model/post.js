@@ -1,13 +1,15 @@
-class Post {
+export class Post {
   constructor(title, content) {
-    this.title = title
-    this.content = content
-    this.createdAt = new Date()
+    this.title = title;
+    this.content = content;
+    this.createdAt = new Date();
   }
 
   getPostData() {
-    return {title: this.title, content: this.content, createdAt: this.createdAt};
+    return {
+      title: this.title,
+      content: this.content,
+      createdAt: this.createdAt,
+    };
   }
 }
-
-export default Post
