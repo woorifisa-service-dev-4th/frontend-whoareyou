@@ -10,7 +10,29 @@ export const postDummyData = [
     },
     status: DataStatus[0],
   },
+  {
+    id: 1,
+    body: {
+      title: "Test Data 1",
+      content: "This is the first test data",
+      like: 2,
+      createdAt: new Date(),
+    },
+    status: DataStatus[0],
+  },
+  {
+    id: 2,
+    body: {
+      title: "Test Data 3",
+      content: "This is the first test data",
+      like: 2,
+      createdAt: new Date(),
+    },
+    status: DataStatus[0],
+  },
 ];
+
+
 export const commentDummyData = [
   {
     id: 0,
@@ -31,6 +53,7 @@ export const commentDummyData = [
     },
     status: DataStatus[0],
   },
+  
 ];
 export const imageDummyData = [
   {
