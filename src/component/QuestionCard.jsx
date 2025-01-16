@@ -1,8 +1,18 @@
 import * as React from "react";
+import { useQnAContext } from "../contexts/QnAContexts";
 
-function QuestionCard({ title, content, date, likes, likeImageSrc }) {
+const QuestionCard = ({ likeImageSrc, postDatas }) => {
+  console.log(postDatas);
+
+  const { title, content, like, createdAt } = postDatas.body;
+  const handleClick = () => {
+    // navigate("/post-detail");
+  };
   return (
-    <article className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full">
+    <article
+      onClick={handleClick}
+      className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full"
+    >
       <div className="flex flex-wrap self-start font-bold text-sky-700 min-h-[90px] max-md:max-w-full">
         <div className="text-5xl leading-[70px] w-[65px] max-md:text-4xl max-md:leading-[62px]">
           Q
@@ -15,7 +25,9 @@ function QuestionCard({ title, content, date, likes, likeImageSrc }) {
         {content}
       </p>
       <div className="flex flex-wrap gap-10 justify-between mt-8 w-full text-xl min-h-[50px] text-zinc-400 max-md:max-w-full">
-        <time className="leading-7 text-center w-[129px]">{date}</time>
+        <time className="leading-7 text-center w-[129px]">
+          {createdAt.toLocaleDateString()}
+        </time>
         <div className="flex gap-2 items-center px-5 py-2.5 h-full leading-snug whitespace-nowrap">
           <img
             loading="lazy"
@@ -23,11 +35,11 @@ function QuestionCard({ title, content, date, likes, likeImageSrc }) {
             className="object-contain shrink-0 self-stretch my-auto aspect-[1.21] w-[29px]"
             alt=""
           />
-          <span className="self-stretch my-auto">{likes}</span>
+          <span className="self-stretch my-auto">{like}</span>
         </div>
       </div>
     </article>
   );
-}
+};
 
 export default QuestionCard;
