@@ -1,15 +1,15 @@
 import "./App.css";
-import QuestionBoard from "./component/Questionboard";
-import { TodoProvider } from "./contexts/BoardContext";
+import QuestionBoard from "./components/Questionboard";
+import QnAProvider from "./contexts/QnAContexts";
 import DefaultLayout from "./layouts/DefaultLayout";
 
 function App() {
   return (
     <>
       <DefaultLayout>
-        <TodoProvider>
+        <QnAProvider>
           <QuestionBoard />
-        </TodoProvider>
+        </QnAProvider>
       </DefaultLayout>
     </>
   );

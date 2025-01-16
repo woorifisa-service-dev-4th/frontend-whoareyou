@@ -1,7 +1,6 @@
 import * as React from "react";
-import { EditorToolbar } from "./EditToolBar";
-
-export const RichTextEditor = () => {
+import EditorToolbar from "./EditToolBar";
+const RichTextEditor = () => {
     const menuItems = ["File", "Edit", "View", "Insert", "Format", "Tools", "Help"];
 
     return (
@@ -30,7 +29,7 @@ export const RichTextEditor = () => {
                     WYSIWYG
                 </div>
                 <div className="mt-6 text-2xl leading-10 text-zinc-900 text-opacity-70 max-md:max-w-full">
-                    Rich Text Editor Component in Figma
+                    Rich Text Editor components in Figma
                 </div>
             </div>
 
@@ -46,3 +45,5 @@ export const RichTextEditor = () => {
         </div>
     );
 };
+
+export default RichTextEditor;

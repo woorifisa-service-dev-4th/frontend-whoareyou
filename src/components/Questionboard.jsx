@@ -1,25 +1,28 @@
 import * as React from "react";
 import SortingTabs from "./SortingTable";
 import BodyButtons from "../layouts/BodyButtons";
-import CategoryButton from "./button/categoryButton";
+import CategoryButton from "./button/CategoryButton";
 import SectionButton from "./button/SectionButton";
 import QuestionContent from "./QuestionContent";
 import Body from "../layouts/Body";
 import Logo from "../layouts/Logo";
 import Header from "../layouts/Header";
 import HeaderButtons from "../layouts/HeaderButtons";
-import AddButton from "./button/AddButton";
-import { LoginButton } from "./button/LoginButton";
+import CustomButton from "./button/CustomButton";
 
-function QuestionBoard() {
+const QuestionBoard= () => {
   return (
     <>
       {/* <Header /> */}
       <Header>
         <Logo />
         <HeaderButtons>
-          <AddButton />
-          <LoginButton />
+          <CustomButton bgColor={"bg-neutral-100"}>
+            Add Question
+          </CustomButton>
+          <CustomButton bgColor={"bg-cyan-400"}>
+            Login
+          </CustomButton>
         </HeaderButtons>
       </Header>
       <Body>
