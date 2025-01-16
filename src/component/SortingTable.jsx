@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { useQnADispatch } from "../contexts/QnAContexts";
 
 function SortingTabs() {
   const [activeOption, setActiveOption] = useState("최신순"); // 기본값 설정
-
+  const dispatch = useQnADispatch();
   const options = ["최신순", "오랜된순", "좋아요순"];
-
+  const sortData = (option) => {
+    dispatch({
+      type: "SORT",
+      selectedSort: option,
+    });
+  };
   return (
     <div
       className="flex flex-wrap items-start self-center text-2xl font-medium leading-snug whitespace-nowrap min-h-[45px] text-zinc-400 max-md:max-w-full"
@@ -21,6 +27,10 @@ function SortingTabs() {
           onClick={() => {
             console.log(option);
             setActiveOption(option);
+            console.log("button 누름");
+            console.log(option);
+
+            sortData(option);
           }}
         >
           {option}
