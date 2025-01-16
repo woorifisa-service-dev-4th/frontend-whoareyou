@@ -19,7 +19,7 @@ function Header() {
                     />
                     <div className="my-auto basis-auto">Woori FISA</div>
                 </div>
-                <div className="flex flex-1 gap-2.5 items-start text-base whitespace-nowrap text-zinc-800">
+                <div className="flex flex-end gap-2.5 items-start text-base whitespace-nowrap text-zinc-800">
                     <button className="overflow-hidden gap-2.5 self-stretch px-7 py-3.5 rounded-xl bg-neutral-100 min-h-[48px] max-md:px-5"
                             onClick={() => open(true)}>
                         글쓰기
