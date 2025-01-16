@@ -1,13 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const DefaultLayout = ({ children }) => {
   return (
-    <div className='w-full h-full overflow-y-scroll bg-slate-400'>
-      <div className='max-w-xl mx-auto min-w-[20rem]'>
-        { children }
-      </div>
-    </div>
-  )
-}
+    <div className="flex overflow-hidden flex-col bg-white">{children}</div>
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;
