@@ -52,7 +52,7 @@ const QuestionContent = () => {
   return (
     <div className="flex flex-col mt-20 max-md:mt-10 max-md:max-w-full">
       {data.map((question) => (
-        <QuestionCard key={question.id} d={question} />
+        <QuestionCard key={question.id} {...question} />
       ))}
     </div>
   );
