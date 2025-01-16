@@ -1,59 +1,82 @@
-import React, { useState } from "react";
-import ToastEditor  from "../ToastEditor";
-import { useQnAContext } from "../../contexts/QnAContexts";
+import React, { useState } from 'react'
+import ToastEditor from '../ToastEditor';
+import { useQnADispatch } from '../../contexts/QnAContexts';
+import { DataStatus } from '../../constants/status';
 
-const CommentSection = ({comment_id}) => {
-    const [body, setBody] = useState('');
-    const [openTextArea, setOpenTextArea] = useState(false);
-    const isCommentTagged = (comment_id === undefined )? false : true;
+const CommentSection = ({comment, recommentState, setIsPostReComment}) => {
+  const [openTextArea, setOpenTextArea] = useState(false);
+  const [body, setBody] = useState('');
 
-    const { commentData } = useQnAContext();
-    const tagData = commentData[comment_id].body;
+  const dispatch = useQnADispatch();
 
-    const openTextAreaHandler = () => {
-        setOpenTextArea(true);
+  const postReCommentHandler = () => {
+    setIsPostReComment(comment.id);
+  }
+
+  const deleteComment = ({recommentState}) => {
+    const deletedComment = {
+        ...comment,
+        status: DataStatus[1],
     }
-    const closeTextAreaHandler = () => {
-        setOpenTextArea(false);
-    }
+    if(recommentState) dispatch({ type: 'DELETE_RECOMMENT', deletedComment });
+    else dispatch({ type: 'DELETE_COMMENT', deletedComment });
+  }
 
-    return (
-        <section className="flex flex-col mt-10 w-full bg-white max-md:max-w-full">
-            <div className="flex flex-wrap gap-8 justify-between items-start w-full leading-snug min-h-[42px] text-zinc-800 max-md:max-w-full">
-                <div className="flex gap-4 items-start">
-                    <h2 className="text-3xl font-bold">댓글</h2>
-                    <div className="text-base">총 2개</div>
-                </div>
-            </div>
-            <form className={`flex flex-col px-20 pt-5 mt-8 w-full text-sm leading-snug whitespace-nowrap rounded-3xl bg-neutral-100 text-zinc-800 max-md:px-5 max-md:max-w-full ${openTextArea ? 'min-h-[500px]' : 'min-h-[100px]'}`}>
+  const updateComment = ({recommentState}) => {
+    const {id, commnetBody, status} = comment;
+    const updatedComment = {
+        ...comment,
+        body: {
+            ...commnetBody,
+            content: body,
+        }
+    }
+    if(recommentState) dispatch({ type: 'UPDATE_RECOMMENT', updatedComment });
+    else dispatch({ type: 'UPDATE_COMMENT', updatedComment });
+    setOpenTextArea(false);
+  }
+
+  return (
+        <section className={`flex flex-row-reverse w-full bg-white max-md:max-w-full"`}>
+            <form className={`flex flex-col px-20 pt-5 mt-8 ${recommentState ? 'w-3/4' : 'w-full'} text-sm leading-snug whitespace-nowrap rounded-3xl bg-neutral-100 text-zinc-800 max-md:px-5 max-md:max-w-full ${openTextArea ? 'min-h-[500px]' : 'min-h-[150px]'}`}>
                 <div className="flex flex-col w-full max-md:max-w-full">
                     <div className="flex flex-col w-full max-md:max-w-full">
-                        {isCommentTagged && 
-                            <div className={`flex flex-col px-20 pt-5 mt-8 w-full text-sm leading-snug whitespace-nowrap rounded-3xl bg-white text-zinc-800 max-md:px-5 max-md:max-w-full ${isCommentTagged ? 'min-h-[50px]' : 'min-h-[0px]'}`}>
-                                {tagData.content}
-                            </div>
-                        }
-                        <div className="flex flex-row-reverse gap-10 items-start w-full min-h-[40px] max-md:max-w-full">
-                            {openTextArea ? 
+                        <div className="flex justify-between gap-10 items-start w-full min-h-[40px] max-md:max-w-full">
+                            {recommentState ? <div className="flex text-lg font-medium">대댓글</div> : <div></div>}
+                            {openTextArea ?  
                             <div className="flex gap-4">
-                                <button type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
-                                등록
+                                <button onClick={(e) => { e.preventDefault(); updateComment(recommentState); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
+                                  완료
+                                </button> 
+                                <button onClick={(e) => { e.preventDefault(); setOpenTextArea(false); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
+                                  취소
+                                </button>                            
+                            </div> :
+                            <div className="flex gap-4">
+                                {recommentState ? 
+                                    <div></div> :
+                                    <button onClick={(e) => { e.preventDefault(); postReCommentHandler(); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
+                                    대댓글 작성
+                                    </button>
+                                }
+                                <button onClick={(e) => { e.preventDefault(); setOpenTextArea(true); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
+                                  수정
                                 </button>
-                                <button onClick={(e) => { e.preventDefault(); closeTextAreaHandler(); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
-                                취소
+                                <button onClick={(e) => { e.preventDefault(); deleteComment(recommentState); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
+                                  삭제
                                 </button>
-                            </div> : 
-                            <button onClick={(e) => { e.preventDefault(); openTextAreaHandler(); }} type="button" className="py-2.5 bg-cyan-400 rounded-xl w-[106px]">
-                                댓글 작성
-                            </button>
+                            </div>
                             }
                         </div>
-                        { openTextArea && <ToastEditor setBody={setBody} /> } 
+                        <div className={`flex flex-col px-10 pt-1 mt-4 w-full text-sm leading-snug whitespace-nowrap rounded-2xl bg-neutral-100 text-zinc-800 max-md:px-5 max-md:max-w-full min-h-[50px]}`}>
+                            {comment.body.content}
+                        </div>
+                        { openTextArea && <ToastEditor setBody={setBody} /> }
                     </div>
                 </div>
             </form>
         </section>
-    );
+  )
 }
 
-export default CommentSection;
+export default CommentSection
