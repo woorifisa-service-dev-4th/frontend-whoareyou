@@ -1,7 +1,7 @@
 import { Post } from './post';
 import { Comment } from './comment';
-import { image } from './image';
-import { status, Status } from './status';
+import { Image } from './image';
+import { Status } from './status';
 export const postDummyData = [
     {
         id: 0,
@@ -32,19 +32,19 @@ export const commentDummyData = [
 export const imageDummyData = [
     {
         id: 0, 
-        image: new image(
+        image: new Image(
             { type: "post", id: 0, url: "./src/assets/react.svg" }
         ),
     },
     {
         id: 1, 
-        image: new image(
+        image: new Image(
             { type: "comment", id: 0, url: "./src/assets/react.svg" }
         ),
     },
     {
         id: 2, 
-        image: new image(
+        image: new Image(
             { type: "comment-comment", id: 1, url: "./src/assets/react.svg" }
         ),
     }
