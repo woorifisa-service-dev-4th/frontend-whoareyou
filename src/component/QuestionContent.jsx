@@ -1,59 +1,102 @@
-import React, { useReducer } from "react";
+import React from "react";
 import QuestionCard from "./QuestionCard";
-import { useBoardData } from "../contexts/BoardContext";
-import { postDummyData } from "../model/initData";
-const questions = [
-  {
-    id: 1,
-    title: "Spring Boot 파일 업로드 관련 질문 있습니다!!",
-    content:
-      "안녕하세요! Spring Boot와 JPA를 사용하여 파일 업로드 및 파일 정보를 데이터베이스에 저장하는 기능을 구현하고 있습니다. 현재는 파일 업로드 자체는 정상적으로 동작하지만, 업로드된 파일의 메타데이터(예: 파일명, 저장 경로, 업로드 날짜 등)를 데이터베이스에 저장하는 로직을 추가하려고 합니다. 현재 작성된 코드는 다음과 같습니다:",
-    date: "2020. 08. 10",
-    likes: 45,
-    likeImageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/eeff8d30265d53cec74c11f4d0ce1d13b0b5be8a4f98f0e7f21cee9ccceef239?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d",
-  },
-  {
-    id: 2,
-    title: "Spring Boot 파일 업로드 관련 질문 있습니다!!",
-    content:
-      "안녕하세요! Spring Boot와 JPA를 사용하여 파일 업로드 및 파일 정보를 데이터베이스에 저장하는 기능을 구현하고 있습니다. 현재는 파일 업로드 자체는 정상적으로 동작하지만, 업로드된 파일의 메타데이터(예: 파일명, 저장 경로, 업로드 날짜 등)를 데이터베이스에 저장하는 로직을 추가하려고 합니다. 현재 작성된 코드는 다음과 같습니다:",
-    date: "2020. 08. 10",
-    likes: 45,
-    likeImageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/eeff8d30265d53cec74c11f4d0ce1d13b0b5be8a4f98f0e7f21cee9ccceef239?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d",
-  },
-  {
-    id: 3,
-    title: "Spring Boot 파일 업로드 관련 질문 있습니다!!",
-    content:
-      "안녕하세요! Spring Boot와 JPA를 사용하여 파일 업로드 및 파일 정보를 데이터베이스에 저장하는 기능을 구현하고 있습니다. 현재는 파일 업로드 자체는 정상적으로 동작하지만, 업로드된 파일의 메타데이터(예: 파일명, 저장 경로, 업로드 날짜 등)를 데이터베이스에 저장하는 로직을 추가하려고 합니다. 현재 작성된 코드는 다음과 같습니다:",
-    date: "2020. 08. 10",
-    likes: 45,
-    likeImageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/057fca40b5cc8e1dd25aa16c0447ae59df52a7bde444ce9a4eb913ad9c7e8aa4?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d",
-  },
-  {
-    id: 4,
-    title: "Spring Boot 파일 업로드 관련 질문 있습니다!!",
-    content:
-      "안녕하세요! Spring Boot와 JPA를 사용하여 파일 업로드 및 파일 정보를 데이터베이스에 저장하는 기능을 구현하고 있습니다. 현재는 파일 업로드 자체는 정상적으로 동작하지만, 업로드된 파일의 메타데이터(예: 파일명, 저장 경로, 업로드 날짜 등)를 데이터베이스에 저장하는 로직을 추가하려고 합니다. 현재 작성된 코드는 다음과 같습니다:",
-    date: "2020. 08. 10",
-    likes: 45,
-    likeImageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/b68630368e6b13905bc00f2307248afcb6f27d75cc457d7d2ab8497306d20d4e?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d",
-  },
-];
+import { postDummyData2, useQnAContext } from "../contexts/QnAContexts";
+import { categoryData } from "../constants/category";
+import { classData } from "../constants/class";
+// Reducer, Context 사용해야함 변경 요망
+// const postDummyData = [
+//   {
+//     id: 0,
+//     body: {
+//       title: "Test Data 0",
+//       content: "This is the first test data",
+//       like: 2,
+//       createdAt: new Date(),
+//       classNum: classData[0],
+//       category: categoryData[0],
+//     },
+//     status: DataStatus[0],
+//   },
+//   {
+//     id: 1,
+//     body: {
+//       title: "Test Data 1",
+//       content: "This is the second test data",
+//       like: 2,
+//       createdAt: new Date(),
+//       classNum: classData[1],
+//       category: categoryData[1],
+//     },
+//     status: DataStatus[0],
+//   },
+// ];
 
 const QuestionContent = () => {
-  const data = useBoardData();
-  console.log(data);
+  const state = useQnAContext();
+  console.log(state);
+
+  // const postData = state.postData;    실제로 이거 넣으면됌됌
+
+  // 먼저 데이터 정렬
+  const sortData = (state, selectedSort) => {
+    if (selectedSort === "최신순")
+      return state.postData.sort(
+        (a, b) => a.body.createdAt.getTime() - b.body.createdAt.getTime()
+      );
+
+    if (selectedSort === "오랜된순")
+      return state.postData.sort(
+        (a, b) => b.body.createdAt.getTime() - a.body.createdAt.getTime()
+      );
+
+    return state.postData.sort((a, b) => b.body.like - a.body.like);
+  };
+  sortData(state, state.selectedSort);
+
+  // filtering logic
+  const filterCategory = (aaa, selectedCategory, selectedSection) => {
+    return selectFunc(aaa, selectedCategory, selectedSection);
+  };
+  const selectFunc = (aaa, selectedCategory, selectedSection) => {
+    if (selectedCategory === "ALL" && selectedSection === "ALL")
+      return aaa.postData;
+    if (selectedCategory === "ALL" && selectedSection !== "ALL")
+      return aaa.postData.filter(
+        (a) => a.body.classNum === classData[selectedSection]
+      );
+    if (selectedCategory !== "ALL" && selectedSection === "ALL")
+      return aaa.postData.filter(
+        (a) => a.body.category === categoryData[selectedCategory]
+      );
+    return aaa.postData.filter(
+      (a) =>
+        a.body.category === categoryData[selectedCategory] &&
+        a.body.classNum === classData[selectedSection]
+    );
+  };
+
+  // 최종 filtering   지금은 이거 넣음음
+  const proxyPostData = filterCategory(
+    state,
+    state.selectedSection,
+    state.selectedCategory
+  );
+
+  // const two = filterSection(one, )
+
+  // const filteredTodosss = filterSection(
+  //   filterCategory(state, state.selectedCategory),
+  //   state.selectedSection
+  // );
+  // console.log(filteredTodosss);
 
   return (
     <div className="flex flex-col mt-20 max-md:mt-10 max-md:max-w-full">
-      {data.map((question) => (
-        <QuestionCard key={question.id} {...question} />
+      {/* //proxyPostData 대신 postData 쓰면됌됌; */}
+      {proxyPostData.map((question) => (
+        <QuestionCard key={question.id} postDatas={question} />
       ))}
+      {/* postData={question} */}
     </div>
   );
 };
