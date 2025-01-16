@@ -13,18 +13,6 @@ import CustomButton from "./button/CustomButton";
 const QuestionBoard= () => {
   return (
     <>
-      {/* <Header /> */}
-      <Header>
-        <Logo />
-        <HeaderButtons>
-          <CustomButton bgColor={"bg-neutral-100"}>
-            Add Question
-          </CustomButton>
-          <CustomButton bgColor={"bg-cyan-400"}>
-            Login
-          </CustomButton>
-        </HeaderButtons>
-      </Header>
       <Body>
         <BodyButtons>
           <CategoryButton />
