@@ -5,7 +5,11 @@ const QnAContext = createContext();
 const QnADispatchContext = createContext();
 
 const reducer = (state, action) => {
+  const {postData, commentData, imageDummyData } = state;
   switch (action.type) {
+    case 'CREATE_POST':
+      const {newPost} = action;
+      return {postData: [...postData, newPost], commentData, imageDummyData};
     case 'COMMENT_POST':
       const newComments = [...state.commentData, action.newComment];
       return {...state, commentData: newComments};
