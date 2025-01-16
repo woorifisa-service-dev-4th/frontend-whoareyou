@@ -1,6 +1,7 @@
 class Image {
-    constructor(type, url) {
+    constructor(type, id, url) {
         this.type = type;
+        this.id = id;
         this.url = url;
     }
 
