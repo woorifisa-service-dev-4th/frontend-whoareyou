@@ -8,7 +8,7 @@ export const postDummyData = [
         post: new Post(
             { title: "Test Data 0", content: "This is the first test data" }
         ),
-        status: Status.active
+        status: Status[0]
     }
 ]
 
@@ -18,14 +18,14 @@ export const commentDummyData = [
         comment: new Comment(
             { post_id: 0, content: "This is the first comment" }
         ),
-        status: Status.active
+        status: Status[0]
     },
     {
         id: 1,
         comment: new Comment(
             { post_id: 0, comment_id: 0, content: "This is the firt comment's comment" }
         ),
-        status: Status.active
+        status: Status[0]
     }
 ]
 
