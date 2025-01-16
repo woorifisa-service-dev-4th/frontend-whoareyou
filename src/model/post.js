@@ -1,6 +1,4 @@
-import React from 'react'
-
-export class Post {
+class Post {
   constructor(title, content) {
     this.title = title
     this.content = content
@@ -11,3 +9,5 @@ export class Post {
     return {title: this.title, content: this.content, createdAt: this.createdAt};
   }
 }
+
+export default Post
