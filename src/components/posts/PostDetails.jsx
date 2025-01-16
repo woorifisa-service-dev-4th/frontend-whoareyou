@@ -12,6 +12,7 @@ const PostDetails = ({ id }) => {
 
     const postData = state.postData[id].body;
 
+
     const { title, content, like, createdAt } = postData;
 
     return (
@@ -43,8 +44,8 @@ const PostDetails = ({ id }) => {
 
             {openModal && createPortal(
                 <Modal>
-                    <PostEditor/>
-                    <PostEditor onClose={() => open(false)}/>
+                    <PostEditor />
+                    <PostEditor onClose={() => open(false)} />
                 </Modal>,
                 document.body
             )}
