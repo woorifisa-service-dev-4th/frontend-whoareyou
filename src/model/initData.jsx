@@ -1,6 +1,6 @@
-import { categoryData } from "../constants/category";
-import { classData } from "../constants/class";
 import { DataStatus } from "../constants/status";
+import { classData } from "../constants/class";
+import { categoryData } from "../constants/category";
 
 export const postDummyData = [
   {
@@ -43,7 +43,7 @@ export const commentDummyData = [
     body: {
       post_id: 0,
       content: "This is the 2 late comment",
-      createdAt: new Date("2022-09-01T00:00:00.000Z").getTime(),
+      createdAt: new Date('2022-09-01T00:00:00.000Z').getTime(),
     },
     status: DataStatus[0],
   },
@@ -72,7 +72,7 @@ export const commentDummyData = [
     body: {
       post_id: 0,
       content: "This is the 1 comment",
-      createdAt: "2021-09-01T00:00:00.000Z",
+      createdAt: '2021-09-01T00:00:00.000Z',
     },
     status: DataStatus[0],
   },
@@ -82,7 +82,7 @@ export const commentDummyData = [
       post_id: 0,
       comment_id: 3,
       content: "This is the 1 REcomment",
-      createdAt: "2021-09-01T00:00:00.000Z",
+      createdAt: '2021-09-01T00:00:00.000Z',
     },
     status: DataStatus[0],
   },

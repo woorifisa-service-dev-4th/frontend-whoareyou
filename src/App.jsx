@@ -1,13 +1,14 @@
 import "./App.css";
-import QuestionBoard from "./component/Questionboard";
 import QnAProvider from "./contexts/QnAContexts";
 import DefaultLayout from "./layouts/DefaultLayout";
+import AppRouter from "./Router";
+
 function App() {
   return (
     <>
       <DefaultLayout>
         <QnAProvider>
-          <QuestionBoard></QuestionBoard>
+          <AppRouter />
         </QnAProvider>
       </DefaultLayout>
     </>
@@ -15,3 +16,4 @@ function App() {
 }
 
 export default App;
+
