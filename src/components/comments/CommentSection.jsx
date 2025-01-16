@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import ToastEditor from '../ToastEditor';
 import { useQnADispatch } from '../../contexts/QnAContexts';
@@ -17,6 +18,7 @@ const CommentSection = ({comment, recommentState, setIsPostReComment}) => {
     const deletedComment = {
         ...comment,
         status: DataStatus[1],
+
     }
     if(recommentState) dispatch({ type: 'DELETE_RECOMMENT', deletedComment });
     else dispatch({ type: 'DELETE_COMMENT', deletedComment });
@@ -31,6 +33,7 @@ const CommentSection = ({comment, recommentState, setIsPostReComment}) => {
             content: body,
         }
     }
+
     if(recommentState) dispatch({ type: 'UPDATE_RECOMMENT', updatedComment });
     else dispatch({ type: 'UPDATE_COMMENT', updatedComment });
     setOpenTextArea(false);
@@ -79,4 +82,5 @@ const CommentSection = ({comment, recommentState, setIsPostReComment}) => {
   )
 }
 
-export default CommentSection
+export default CommentSection;
+

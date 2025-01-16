@@ -1,15 +1,15 @@
 import { useQnAContext } from "../contexts/QnAContexts";
 import {useNavigate} from 'react-router-dom';
 
-const QuestionCard=({ likeImageSrc }) => {
+const QuestionCard = ({ likeImageSrc }) => {
+
   const state = useQnAContext();
   const navigate = useNavigate();
-  console.log(state.postData[0].body);
-  const postData = state.postData[0].body;
-  const { title, content, like, createdAt} = postData;
-
+  const postData = state.postData.find((q) => q.id === parseInt(id));
+  const { title, content, like, createdAt } = postData;
+  
   const handleClick = () => {
-    navigate(`post-detail/0`);
+    navigate("/post-detail/0");
   }
 
   return (
@@ -40,5 +40,4 @@ const QuestionCard=({ likeImageSrc }) => {
     </article>
   );
 }
-
 export default QuestionCard;

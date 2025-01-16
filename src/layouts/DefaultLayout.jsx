@@ -6,7 +6,6 @@ const DefaultLayout = ({ children }) => {
     <>
       <Header />
       <div className="flex overflow-hidden flex-col bg-white">{children}</div>
-    
     </>
   );
 };
