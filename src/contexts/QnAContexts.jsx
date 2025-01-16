@@ -34,7 +34,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedSort: action.selectedSort,
-      };      
+      };
     default:
       return state;
   }
