@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import reactLogo from '@/assets/react.svg'
 
 const ToastEditor = ({ setBody }) => {
   const editorRef = useRef();
@@ -39,6 +40,11 @@ const ToastEditor = ({ setBody }) => {
         //   });
 
         // }}
+        hooks={{
+          addImageBlobHook: async (blob, callback) => {
+            callback(reactLogo, '');
+          }
+        }}
         
         ref={editorRef} // ref 참조
         onChange={onChangeGetHTML} // onChange 이벤트
