@@ -1,6 +1,7 @@
 import { DataStatus } from "../constants/status";
 import { classData } from "../constants/class";
 import { categoryData } from "../constants/category";
+
 export const postDummyData = [
   {
     id: 0,
@@ -35,7 +36,6 @@ export const postDummyData = [
     status: DataStatus[0],
   },
 ];
-
 
 export const commentDummyData = [
   {
@@ -104,8 +104,7 @@ export const commentDummyData = [
       createdAt: new Date(),
     },
     status: DataStatus[0],
-  },  
-
+  },
 ];
 export const imageDummyData = [
   {

@@ -1,3 +1,4 @@
+
 import { useContext, createContext, useReducer } from 'react';
 import { postDummyData, commentDummyData, imageDummyData } from '../model/initData';
 
@@ -5,6 +6,7 @@ const QnAContext = createContext();
 const QnADispatchContext = createContext();
 
 const reducer = (state, action) => {
+
   const {postData, commentData, imageDummyData } = state;
   switch (action.type) {
     case 'CREATE_POST':
@@ -60,7 +62,7 @@ const QnAProvider = ({children}) => {
         {children}
       </QnADispatchContext.Provider>
     </QnAContext.Provider>
-  )
-}
+  );
+};
 
-export default QnAProvider
+export default QnAProvider;
