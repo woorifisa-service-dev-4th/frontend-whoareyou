@@ -32,7 +32,9 @@ function Header() {
 
             {openModal && createPortal(
             <Modal>
-                <PostEditor onClose={() => open(false)}/>
+                <PostEditor onClose={() => open(false)}>
+                    게시물 등록
+                </PostEditor>
             </Modal>,
             document.body
         )}
