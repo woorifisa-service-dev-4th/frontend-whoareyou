@@ -8,18 +8,17 @@ import Body from "../layouts/Body";
 import Logo from "../layouts/Logo";
 import Header from "../layouts/Header";
 import HeaderButtons from "../layouts/HeaderButtons";
-import AddButton from "./button/AddButton";
-import { LoginButton } from "./button/LoginButton";
+import CustomButton from "./button/CustomButton";
 
-function QuestionBoard() {
+const QuestionBoard = () => {
   return (
     <>
       {/* <Header /> */}
       <Header>
         <Logo />
         <HeaderButtons>
-          <AddButton />
-          <LoginButton />
+          <CustomButton bgColor={"bg-neutral-100"}>Add Question</CustomButton>
+          <CustomButton bgColor={"bg-cyan-400"}>Login</CustomButton>
         </HeaderButtons>
       </Header>
       <Body>
@@ -35,6 +34,6 @@ function QuestionBoard() {
       </Body>
     </>
   );
-}
+};
 
 export default QuestionBoard;
