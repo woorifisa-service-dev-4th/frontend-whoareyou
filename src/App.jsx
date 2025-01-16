@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import './App.css'
-import QuestionBoard from './component/Questionboard'
-import DefaultLayout from './layouts/DefaultLayout'
+import "./App.css";
+import QuestionBoard from "./component/Questionboard";
+import { TodoProvider } from "./contexts/BoardContext";
+import DefaultLayout from "./layouts/DefaultLayout";
 
 function App() {
-
-
   return (
     <>
-      <QuestionBoard />
+      <DefaultLayout>
+        <TodoProvider>
+          <QuestionBoard />
+        </TodoProvider>
+      </DefaultLayout>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
