@@ -32,7 +32,7 @@ function Header() {
 
             {openModal && createPortal(
             <Modal>
-                <PostEditor />
+                <PostEditor onClose={() => open(false)}/>
             </Modal>,
             document.body
         )}
