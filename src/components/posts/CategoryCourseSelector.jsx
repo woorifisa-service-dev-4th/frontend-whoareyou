@@ -3,7 +3,7 @@ import CourseFilter from "./CourseFilter";
 import CategoryFilter from "./CategoryFilter";
 
 
-export const CategoryCourseSelector = () => {
+const CategoryCourseSelector = () => {
     const courseName = (data) => console.log(data);
     const categoryName = (data) => console.log(data);
      
@@ -17,3 +17,5 @@ export const CategoryCourseSelector = () => {
         </div>
     );
 };
+
+export default CategoryCourseSelector;

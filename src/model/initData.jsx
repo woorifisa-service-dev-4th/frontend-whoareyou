@@ -1,12 +1,14 @@
-import { Status } from "./status";
+import { DataStatus } from "../constants/status";
 export const postDummyData = [
   {
     id: 0,
     body: {
       title: "Test Data 0",
       content: "This is the first test data",
+      like: 2,
+      createdAt: new Date(),
     },
-    status: Status[0],
+    status: DataStatus[0],
   },
 ];
 export const commentDummyData = [
@@ -15,8 +17,9 @@ export const commentDummyData = [
     body: {
       post_id: 0,
       content: "This is the first comment",
+      createdAt: new Date(),
     },
-    status: Status[0],
+    status: DataStatus[0],
   },
   {
     id: 1,
@@ -24,8 +27,9 @@ export const commentDummyData = [
       post_id: 0,
       comment_id: 0,
       content: "This is the second comment",
+      createdAt: new Date(),
     },
-    status: Status[0],
+    status: DataStatus[0],
   },
 ];
 export const imageDummyData = [

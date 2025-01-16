@@ -1,8 +1,8 @@
 import React from 'react';
 import PostDetails from './PostDeails';
-import { CommentSection } from '../ui/CommentSection';
+import CommentSection from '../comments/CommentSection';
 
-
+// Reducer, Context 사용해야함 변경 요망
 const postData = {
     id: 0,
     post: {
@@ -47,7 +47,7 @@ const comments = [
 ];
 
 
-const ForumPost = () => {
+const PostForm = () => {
     return (
         <main className="flex overflow-hidden flex-col bg-white">
             <div className="flex flex-col self-center mt-24 max-w-full w-[1200px] max-md:mt-10">
@@ -61,4 +61,4 @@ const ForumPost = () => {
     );
 };
 
-export default ForumPost;
+export default PostForm;

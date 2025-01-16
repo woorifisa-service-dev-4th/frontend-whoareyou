@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ToastEditor  from "./ToastEditor";
-import { useQnAContext } from "../contexts/QnAContexts";
+import ToastEditor  from "../ToastEditor";
+import { useQnAContext } from "../../contexts/QnAContexts";
 
 const CommentSection = ({comment_id}) => {
     const [body, setBody] = useState('');

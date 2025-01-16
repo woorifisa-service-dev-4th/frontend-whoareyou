@@ -1,8 +1,8 @@
 import * as React from "react";
-import { RichTextEditor } from "./RichTextEditor";
-import { CategoryCourseSelector } from "./CategoryCourseSelector";
+import RichTextEditor from "./RichTextEditor";
+import CategoryCourseSelector from "./CategoryCourseSelector";
 
-export default function PostEditor() {
+const PostEditor = () => {
     return (
         <div className=" w-full h-full flex flex-col items-center px-24 py-12 bg-white rounded-3xl max-md:px-5 overflow-y-scroll">
             <h1 className="text-3xl font-bold leading-snug text-center text-cyan-400">
@@ -45,3 +45,5 @@ export default function PostEditor() {
         </div>
     );
 }
+
+export default PostEditor;

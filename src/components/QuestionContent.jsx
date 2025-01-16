@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import QuestionCard from "./QuestionCard";
-import { useBoardData } from "../contexts/BoardContext";
-import { postDummyData } from "../model/initData";
+import { useQnAContext } from "../contexts/QnAContexts";
+// Reducer, Context 사용해야함 변경 요망
 const questions = [
   {
     id: 1,
@@ -46,12 +46,13 @@ const questions = [
 ];
 
 const QuestionContent = () => {
-  const data = useBoardData();
-  console.log(data);
+  const state = useQnAContext();
+  const postData = state.postData;
+  console.log(postData);
 
   return (
     <div className="flex flex-col mt-20 max-md:mt-10 max-md:max-w-full">
-      {data.map((question) => (
+      {postData.map((question) => (
         <QuestionCard key={question.id} {...question} />
       ))}
     </div>

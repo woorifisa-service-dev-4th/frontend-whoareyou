@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const EditorToolbar = () => {
+const EditorToolbar = () => {
     const toolbarItems = [
         { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/d328f3a2b8dd81ceb29f0c8f081b9c31d44f9e897b3cf7abfe0f7f42f1c4b48b?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d", alt: "Bold text" },
         { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/c28f224f7d4681d3202c2d81d8a0eb9a119e3f0b9486569f49e09607a54f96ed?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d", alt: "Italic text" },
@@ -24,3 +24,5 @@ export const EditorToolbar = () => {
         </div>
     );
 };
+
+export default EditorToolbar;
