@@ -1,23 +1,21 @@
 import * as React from "react";
 import { useQnAContext } from "../contexts/QnAContexts";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const QuestionCard = ({ likeImageSrc, question={question} }) => {
-
-
-const QuestionCard=({ likeImageSrc }) => {
+const QuestionCard = ({ likeImageSrc, question = { question }, id }) => {
   const state = useQnAContext();
   const navigate = useNavigate();
   const postData = state.postData.find((q) => q.id === parseInt(question.id)).body;
   const { title, content, like, createdAt } = postData;
   
+
   const handleClick = () => {
-    navigate("/post-detail/0");
+    navigate(`/post-detail/${id}`);
   }
 
   return (
-    <article className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full">
-      <div className="flex flex-wrap self-start font-bold text-sky-700 min-h-[90px] max-md:max-w-full">
+    <article onClick={handleClick} className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full">
+      <div className="flex flex-wrap self-start font-bold text-customBlue min-h-[90px] max-md:max-w-full">
         <div className="text-5xl leading-[70px] w-[65px] max-md:text-4xl max-md:leading-[62px]">
           Q
         </div>
@@ -33,9 +31,9 @@ const QuestionCard=({ likeImageSrc }) => {
         <div className="flex gap-2 items-center px-5 py-2.5 h-full leading-snug whitespace-nowrap">
           <img
             loading="lazy"
-            src={likeImageSrc}
-            className="object-contain shrink-0 self-stretch my-auto aspect-[1.21] w-[29px]"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/eeff8d30265d53cec74c11f4d0ce1d13b0b5be8a4f98f0e7f21cee9ccceef239?placeholderIfAbsent=true&apiKey=342eb70ec9c347beb3127fd33e54f28d"
             alt=""
+            className="object-contain shrink-0 self-stretch my-auto aspect-[1.21] w-[29px]"
           />
           <span className="self-stretch my-auto">{like}</span>
         </div>

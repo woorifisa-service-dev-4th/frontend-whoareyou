@@ -17,7 +17,9 @@ const PostDetails = ({ id }) => {
 
     return (
         <article className="flex flex-col px-20 py-8 w-full text-xl rounded-3xl bg-neutral-100 max-w-[1200px] max-md:px-5 max-md:max-w-full">
-            <h2>{title}</h2>
+            <h2 className="gap-2.5 self-stretch py-7 h-full text-3xl leading-snug text-center min-w-[240px] max-md:max-w-full text-customBlue font-bold">
+                {title}
+            </h2>
             <div className="flex justify-end gap-10 w-full text-center min-h-[80px] max-md:max-w-full">
                 <div className="flex flex-end gap-5 h-full leading-7 whitespace-nowrap text-zinc-400">
                     <button className="w-[35px]"
