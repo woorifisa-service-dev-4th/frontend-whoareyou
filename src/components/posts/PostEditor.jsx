@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import ToastEditor from "../ToastEditor";
 import CustomButton from "../button/CustomButton";
 import CategoryFilter from "./CategoryFilter";
-import { useQnAContext, useQnADispatch } from "../../contexts/QnAContexts";
 import ClassFilter from "./ClassFilter";
+import { useQnAContext, useQnADispatch } from "../../contexts/QnAContexts";
 
 const PostEditor = ({ onClose, children }) => {
     const isNewPost = () => children.endsWith('등록') ? true : false;
 
     const datas = useQnAContext();
     const posts = datas.postData;
+    
     const dispatch = useQnADispatch();
 
     const [categoryNum, setCategory] = useState(0);
