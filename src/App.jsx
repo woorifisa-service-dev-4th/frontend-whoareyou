@@ -6,11 +6,11 @@ import AppRouter from "./Router";
 function App() {
   return (
     <>
-      <DefaultLayout>
-        <QnAProvider>
+      <QnAProvider>
+        <DefaultLayout>
           <AppRouter />
-        </QnAProvider>
-      </DefaultLayout>
+        </DefaultLayout>
+      </QnAProvider>
     </>
   );
 }

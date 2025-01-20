@@ -37,9 +37,7 @@ const QuestionCard = ({ likeImageSrc, question = { question }, id }) => {
           />
           <span className="self-stretch my-auto">{like}</span>
         </div>
-      </div>
-    </article>
-  );
-}
-
+      </article>
+    );
+  }
 export default QuestionCard;
