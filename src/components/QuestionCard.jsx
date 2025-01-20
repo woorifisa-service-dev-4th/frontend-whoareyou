@@ -1,20 +1,20 @@
 import * as React from "react";
-import { useQnAContext } from "../contexts/QnAContexts";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const QuestionCard = ({ likeImageSrc, question = { question }, id }) => {
-  const state = useQnAContext();
+const QuestionCard = ({ likeImageSrc, bodyData }) => {
   const navigate = useNavigate();
-  const postData = state.postData.find((q) => q.id === parseInt(question.id)).body;
-  const { title, content, like, createdAt } = postData;
-  
+
+  const { title, content, like, createdAt } = bodyData.body;
 
   const handleClick = () => {
-    navigate(`/post-detail/${id}`);
-  }
+    navigate(`/post-detail/${bodyData.id}`);
+  };
 
   return (
-    <article onClick={handleClick} className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full">
+    <article
+      onClick={handleClick}
+      className="flex flex-col px-20 py-8 mt-10 w-full rounded-3xl bg-neutral-100 max-md:px-5 max-md:max-w-full"
+    >
       <div className="flex flex-wrap self-start font-bold text-customBlue min-h-[90px] max-md:max-w-full">
         <div className="text-5xl leading-[70px] w-[65px] max-md:text-4xl max-md:leading-[62px]">
           Q
@@ -27,7 +27,9 @@ const QuestionCard = ({ likeImageSrc, question = { question }, id }) => {
         {content}
       </p>
       <div className="flex flex-wrap gap-10 justify-between mt-8 w-full text-xl min-h-[50px] text-zinc-400 max-md:max-w-full">
-        <time className="leading-7 text-center w-[129px]">{createdAt.toLocaleString().slice(0, -10)}</time>
+        <time className="leading-7 text-center w-[129px]">
+          {createdAt.toLocaleString().slice(0, -11)}
+        </time>
         <div className="flex gap-2 items-center px-5 py-2.5 h-full leading-snug whitespace-nowrap">
           <img
             loading="lazy"
@@ -37,7 +39,8 @@ const QuestionCard = ({ likeImageSrc, question = { question }, id }) => {
           />
           <span className="self-stretch my-auto">{like}</span>
         </div>
-      </article>
-    );
-  }
+      </div>
+    </article>
+  );
+};
 export default QuestionCard;

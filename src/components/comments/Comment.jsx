@@ -4,9 +4,9 @@ import CommentSection from './CommentSection'
 import { useQnAContext } from '../../contexts/QnAContexts';
 import sortActiveComments from '../utils/SortedComment';
 
-const Comment = ({postId}) => {
+const Comment = ({id}) => {
   const allCommentsData = useQnAContext().commentData;
-  const comments = allCommentsData.filter(comment => Number(comment.body.post_id) === Number(postId));
+  const comments = allCommentsData.filter(comment => Number(comment.body.post_id) === Number(id));
   const [isPostReComment, setIsPostReComment] = useState('-1');
   const sortedComments = sortActiveComments(comments);
   return (

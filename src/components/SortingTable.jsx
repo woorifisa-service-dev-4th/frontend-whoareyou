@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQnAContext, useQnADispatch } from "../contexts/QnAContexts";
+import QuestionContent from "./QuestionContent";
 
 function SortingTabs() {
   const [activeOption, setActiveOption] = useState("최신순"); // 기본값 설정
-
+  const state = useQnAContext();
+  const dispatch = useQnADispatch();
   const options = ["최신순", "오랜된순", "좋아요순"];
+
+  //글쓰기 이후 최신순으로 초기화 함수
+  useEffect(() => {
+    if (state.selectedSort != activeOption) {
+      setActiveOption("최신순");
+      dispatch({});
+    }
+  }, [state.selectedSort]);
+
+  const sortData = (option) => {
+    dispatch({
+      type: "SORT",
+      selectedSort: option,
+    });
+  };
 
   return (
     <div
@@ -19,8 +37,8 @@ function SortingTabs() {
               : "gap-2.5 px-5 py-2.5 min-h-[40px] min-w-[240px] w-[300px]"
           }`}
           onClick={() => {
-            console.log(option);
             setActiveOption(option);
+            sortData(option);
           }}
         >
           {option}
